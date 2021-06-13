@@ -1,6 +1,6 @@
-#include "Watchy_DOS.h"
+#include "PowerWatchy.h"
 
-WatchyDOS watchy;
+PowerWatchy watchy;
 
 void setup(){
   watchy.init();

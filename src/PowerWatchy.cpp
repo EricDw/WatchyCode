@@ -1,8 +1,8 @@
-#include "Watchy_DOS.h"
+#include "PowerWatchy.h"
 
-WatchyDOS::WatchyDOS(){} //constructor
+PowerWatchy::PowerWatchy(){} //constructor
 
-void WatchyDOS::drawWatchFace(){
+void PowerWatchy::drawWatchFace(){
     char time[6];
     String batteryLevel = "";
     float VBAT = getBatteryVoltage();

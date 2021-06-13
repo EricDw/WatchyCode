@@ -1,12 +1,12 @@
-#ifndef WATCHY_DOS_H
-#define WATCHY_DOS_H
+#ifndef POWER_WATCHY_H
+#define POWER_WATCHY_H
 
 #include <Watchy.h>
 #include "Px437_IBM_BIOS5pt7b.h"
 
-class WatchyDOS : public Watchy{
+class PowerWatchy : public Watchy{
     public:
-        WatchyDOS();
+        PowerWatchy();
         void drawWatchFace();
 };
 
