@@ -42,7 +42,7 @@ void WatchyDOS::drawWatchFace(){
     display.print("  ");
     display.println(time);
     display.setTextSize(1);
-    display.print("     ");
+    display.print("    ");
     display.print(currentTime.Year + YEAR_OFFSET);
     display.print("-");
     if (currentTime.Month <= 9)
