@@ -8,6 +8,11 @@ class PowerWatchy : public Watchy{
     public:
         PowerWatchy();
         void drawWatchFace();
+        void drawSpacer() {
+            display.setTextSize(1);
+            display.println();
+            display.setTextSize(2);
+        }
 };
 
 #endif

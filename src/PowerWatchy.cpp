@@ -1,57 +1,58 @@
 #include "PowerWatchy.h"
 
-PowerWatchy::PowerWatchy(){} //constructor
+#define DARKMODE false
 
-void PowerWatchy::drawWatchFace(){
-    char time[6];
+PowerWatchy::PowerWatchy() {} //constructor
+
+void PowerWatchy::drawWatchFace()
+{
     String batteryLevel = "";
+
     float VBAT = getBatteryVoltage();
-    if(VBAT > 4.1){
+
+    if (VBAT > 4.1)
+    {
         batteryLevel = "HIGH";
     }
-    else if(VBAT > 3.95 && VBAT <= 4.1){
+    else if (VBAT > 3.95 && VBAT <= 4.1)
+    {
         batteryLevel = "MEDIUM";
     }
-    else if(VBAT > 3.80 && VBAT <= 3.95){
+    else if (VBAT > 3.80 && VBAT <= 3.95)
+    {
         batteryLevel = "LOW";
-    }    
-    else if(VBAT <= 3.80){
+    }
+    else if (VBAT <= 3.80)
+    {
         batteryLevel = "DEAD";
     }
-    time[0] = '0' + ((currentTime.Hour/10)%10);
-    time[1] = '0' + (currentTime.Hour%10); 
-    time[2] = ':';
-    time[3] = '0' + ((currentTime.Minute/10)%10);
-    time[4] = '0' + (currentTime.Minute%10); 
-    time[5] = 0;
+    
     display.setTextSize(0.5);
     display.setRotation(1);
-    display.fillScreen(GxEPD_BLACK);
-    display.setTextColor(GxEPD_WHITE);
+    display.fillScreen(DARKMODE ? GxEPD_BLACK : GxEPD_WHITE);
+    display.setTextColor(DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
     display.setFont(&Px437_IBM_BIOS5pt7b);
     display.setCursor(0, 24);
-    display.println("PowerWatchy 1.0.0");
-    display.println("Copyright (c) EricD.");
-    display.println(" ");
-    display.print("AUTOEXEC BAT ");
-    display.println(batteryLevel);
-    display.println(" ");
-    display.println("CLIHero >_ Get-Date");
-    display.println("\n");
     display.setTextSize(2);
-    display.print("  ");
-    display.println(time);
-    display.setTextSize(1);
-    display.print("    ");
-    display.print(currentTime.Year + YEAR_OFFSET);
-    display.print("-");
+    display.println("B: " + batteryLevel);
+    drawSpacer();
+    display.print("Y: ");
+    display.println(currentTime.Year + YEAR_OFFSET);
+    drawSpacer();
+    display.print("M: ");
+
     if (currentTime.Month <= 9)
     {
         display.print("0");
     }
-    
-    display.print(currentTime.Month);
-    display.print("-");
-    display.print(currentTime.Day);
-    display.println("\n\nCLIHero >_");
+
+    display.println(currentTime.Month);
+    drawSpacer();
+    display.print("D: ");
+    display.println(currentTime.Day);
+    drawSpacer();
+    display.print("T: ");
+    display.print(currentTime.Hour);
+    display.print(':');
+    display.println(currentTime.Minute);
 }
